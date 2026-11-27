@@ -190,10 +190,11 @@ class CartItem(BaseModel):
 class OrderIn(BaseModel):
     init_data: str = ""
     items: list[CartItem] = Field(min_length=1, max_length=50)
+    # Keep these minimums in sync with the checks in webapp/app.js (submitOrder).
     name: str = Field(min_length=2, max_length=80)
     phone: str = Field(min_length=7, max_length=25)
     region: str = Field(min_length=2, max_length=60)
-    address: str = Field(min_length=3, max_length=300)
+    address: str = Field(min_length=2, max_length=300)
     comment: str = Field("", max_length=500)
 
 

@@ -225,7 +225,9 @@
     const f = $("#form"), fd = Object.fromEntries(new FormData(f));
     let ok = true;
     for (const el of f.querySelectorAll("[required]")) {
-      const bad = !el.value.trim() || (el.name === "phone" && el.value.replace(/\D/g, "").length < 9);
+      const v = el.value.trim();
+      // same minimums as OrderIn in main.py
+      const bad = v.length < 2 || (el.name === "phone" && v.replace(/\D/g, "").length < 9);
       el.classList.toggle("bad", bad); if (bad) ok = false;
     }
     if (!ok) { $("#formErr").textContent = t("fill"); $("#formErr").hidden = false; return; }
@@ -237,14 +239,25 @@
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ init_data: tg ? tg.initData : "", items: S.cart, ...fd }),
       });
-      const res = await r.json();
-      if (!r.ok) throw new Error(res.detail || "error");
+      const res = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        // 422 = a field failed server validation: highlight it instead of showing raw data
+        if (Array.isArray(res.detail)) {
+          for (const d of res.detail) {
+            const field = f.querySelector(`[name="${(d.loc || []).slice(-1)[0]}"]`);
+            if (field) field.classList.add("bad");
+          }
+          throw new Error(t("fill"));
+        }
+        throw new Error(typeof res.detail === "string" ? res.detail : "error");
+      }
       S.cart = []; saveCart();
       try { tg.HapticFeedback.notificationOccurred("success"); } catch {}
       $("#okText").textContent = t("okText")(res.order_id, S.data.settings.manager);
       go("success");
     } catch (e) {
-      $("#formErr").textContent = t("fail") + (typeof e.message === "string" && e.message !== "error" ? ` (${e.message})` : "");
+      $("#formErr").textContent = e.message === t("fill") ? t("fill")
+        : t("fail") + (e.message && e.message !== "error" ? ` (${e.message})` : "");
       $("#formErr").hidden = false;
     } finally { setLoading(false); if (S.view === "checkout") setAction(t("send"), submitOrder); }
   }
