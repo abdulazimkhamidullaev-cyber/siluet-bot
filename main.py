@@ -42,7 +42,8 @@ load_dotenv(BASE / ".env")
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 WEBAPP_URL = os.getenv("WEBAPP_URL", "").rstrip("/")          # public https URL of this server
-ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID", "0") or 0)       # where orders are sent
+# Where orders are sent. Several admins: comma-separated, e.g. "123456789,987654321"
+ADMIN_CHAT_IDS = [int(x) for x in os.getenv("ADMIN_CHAT_ID", "").replace(" ", "").split(",") if x.lstrip("-").isdigit() and x != "0"]
 DEV_MODE = os.getenv("DEV_MODE", "0") == "1"                    # allow orders from a plain browser
 PORT = int(os.getenv("PORT", "8000"))
 
@@ -161,8 +162,11 @@ async def notify_order(order_id: int, user: dict, o: "OrderIn", lines: list, tot
         kb = InlineKeyboardMarkup(inline_keyboard=[[
             InlineKeyboardButton(text="✉️ Mijozga yozish", url=f"tg://user?id={user['id']}")
         ]])
-    if ADMIN_CHAT_ID:
-        await bot.send_message(ADMIN_CHAT_ID, text, reply_markup=kb)
+    for admin in ADMIN_CHAT_IDS:
+        try:
+            await bot.send_message(admin, text, reply_markup=kb)
+        except Exception as ex:  # one admin blocked the bot / never pressed Start
+            print(f"order #{order_id}: could not notify admin {admin}: {ex}")
 
     if user.get("id"):
         cat = load_catalog()
