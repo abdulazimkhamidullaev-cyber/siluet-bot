@@ -7,7 +7,6 @@
   const T = {
     uz: {
       heroK: "Yangi kolleksiya", heroT: "Original sifat — sizning siluetingiz",
-      perk1: "🇺🇿 Butun O'zbekiston bo'ylab", perk2: "✈️ 7–14 kun", perk3: "💳 50% oldindan to'lov",
       all: "Hammasi", chooseSize: "O'lchamni tanlang", qty: "Soni",
       cart: "Savat", empty: "Savatingiz bo'sh", toCatalog: "Katalogga qaytish",
       checkout: "Rasmiylashtirish", fName: "Ism va familiya", fPhone: "Telefon raqam",
@@ -22,7 +21,6 @@
     },
     ru: {
       heroK: "Новая коллекция", heroT: "Оригинальное качество — ваш силуэт",
-      perk1: "🇺🇿 По всему Узбекистану", perk2: "✈️ 7–14 дней", perk3: "💳 Предоплата 50%",
       all: "Все", chooseSize: "Выберите размер", qty: "Количество",
       cart: "Корзина", empty: "Ваша корзина пуста", toCatalog: "Вернуться в каталог",
       checkout: "Оформление", fName: "Имя и фамилия", fPhone: "Телефон",
