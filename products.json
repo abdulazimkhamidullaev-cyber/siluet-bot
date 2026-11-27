@@ -7,13 +7,23 @@
     "prepay_percent": 50,
     "delivery_days": "7–14",
     "manager": "@dilmurodov_bexruz",
-    "channel": "https://t.me/siluetstoreuz"
+    "channel": "https://t.me/siluetstoreuz",
+    "usd_rate": 12100,
+    "cargo": {
+      "uz": "+ kargo xizmati: 14 000 so'm / 100 g (alohida hisoblanadi)",
+      "ru": "+ карго: 14 000 сум / 100 г (оплачивается отдельно)"
+    }
   },
   "categories": [
     {
-      "id": "tops",
-      "uz": "Ustki kiyim",
-      "ru": "Верх"
+      "id": "outer",
+      "uz": "Kurtka va palto",
+      "ru": "Куртки и пальто"
+    },
+    {
+      "id": "knit",
+      "uz": "Kardigan va jiletka",
+      "ru": "Кардиганы и жилеты"
     },
     {
       "id": "pants",
@@ -21,54 +31,79 @@
       "ru": "Брюки"
     },
     {
-      "id": "outer",
-      "uz": "Kurtkalar",
-      "ru": "Куртки"
+      "id": "shoes",
+      "uz": "Poyabzal",
+      "ru": "Обувь"
     },
     {
-      "id": "sets",
-      "uz": "To'plamlar",
-      "ru": "Комплекты"
+      "id": "acc",
+      "uz": "Aksessuarlar",
+      "ru": "Аксессуары"
     }
   ],
   "products": [
     {
-      "id": "p1",
-      "category": "tops",
+      "id": "safari-kurtka",
+      "category": "outer",
       "title": {
-        "uz": "Klassik polo",
-        "ru": "Классическое поло"
+        "uz": "Safari kurtka",
+        "ru": "Куртка сафари"
       },
-      "price": 289000,
-      "old_price": 349000,
+      "description": {
+        "uz": "4 cho'ntak · belli fason · suv o'tkazmaydi",
+        "ru": "4 кармана · приталенный крой · водоотталкивающая"
+      },
+      "price": 629000,
+      "old_price": null,
       "sizes": [
-        "S",
         "M",
         "L",
         "XL",
         "2XL",
-        "3XL",
-        "4XL",
-        "5XL",
-        "6XL"
+        "3XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "To'q ko'k",
+              "ru": "Тёмно-синий"
+            },
+            {
+              "uz": "Bejeviy",
+              "ru": "Бежевый"
+            }
+          ]
+        }
       ],
       "images": [
-        "/static/img/p1.svg"
+        "/static/img/products/safari-kurtka/1.jpg",
+        "/static/img/products/safari-kurtka/2.jpg",
+        "/static/img/products/safari-kurtka/3.jpg",
+        "/static/img/products/safari-kurtka/4.jpg",
+        "/static/img/products/safari-kurtka/5.jpg",
+        "/static/img/products/safari-kurtka/6.jpg"
       ],
       "in_stock": true,
-      "description": {
-        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
-        "ru": "Оригинальное качество. Размеры — от S до 6XL."
-      }
+      "post": "https://t.me/siluetstoreuz/26"
     },
     {
-      "id": "p2",
-      "category": "tops",
+      "id": "polupalto",
+      "category": "outer",
       "title": {
-        "uz": "Oversize futbolka",
-        "ru": "Оверсайз футболка"
+        "uz": "Polupalto",
+        "ru": "Полупальто"
       },
-      "price": 199000,
+      "description": {
+        "uz": "Ikki portli · tabiiy yun 🐏",
+        "ru": "Двубортное · натуральная шерсть 🐏"
+      },
+      "price": 529000,
       "old_price": null,
       "sizes": [
         "S",
@@ -78,142 +113,411 @@
         "2XL",
         "3XL",
         "4XL",
-        "5XL",
-        "6XL"
+        "5XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "To'q ko'k",
+              "ru": "Тёмно-синий"
+            }
+          ]
+        }
       ],
       "images": [
-        "/static/img/p2.svg"
+        "/static/img/products/polupalto/1.jpg",
+        "/static/img/products/polupalto/2.jpg",
+        "/static/img/products/polupalto/3.jpg",
+        "/static/img/products/polupalto/4.jpg",
+        "/static/img/products/polupalto/5.jpg",
+        "/static/img/products/polupalto/6.jpg"
       ],
       "in_stock": true,
-      "description": {
-        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
-        "ru": "Оригинальное качество. Размеры — от S до 6XL."
-      }
+      "post": "https://t.me/siluetstoreuz/43"
     },
     {
-      "id": "p3",
-      "category": "pants",
+      "id": "vetrovka",
+      "category": "outer",
       "title": {
-        "uz": "Chino shim",
-        "ru": "Брюки чинос"
+        "uz": "Vetrovka",
+        "ru": "Ветровка"
+      },
+      "description": {
+        "uz": "Manjetli · kuz-bahor uchun 🍂",
+        "ru": "С манжетами · на осень-весну 🍂"
       },
       "price": 329000,
       "old_price": null,
       "sizes": [
-        "S",
         "M",
         "L",
         "XL",
-        "2XL",
-        "3XL",
-        "4XL",
-        "5XL",
-        "6XL"
+        "2XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "To'q ko'k",
+              "ru": "Тёмно-синий"
+            }
+          ]
+        }
       ],
       "images": [
-        "/static/img/p3.svg"
+        "/static/img/products/vetrovka/1.jpg",
+        "/static/img/products/vetrovka/2.jpg",
+        "/static/img/products/vetrovka/3.jpg"
       ],
       "in_stock": true,
-      "description": {
-        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
-        "ru": "Оригинальное качество. Размеры — от S до 6XL."
-      }
+      "post": "https://t.me/siluetstoreuz/53"
     },
     {
-      "id": "p4",
+      "id": "vetrovka-kashemir",
       "category": "outer",
       "title": {
-        "uz": "Kuzgi kurtka",
-        "ru": "Осенняя куртка"
+        "uz": "Vetrovka (kashemir)",
+        "ru": "Ветровка (кашемир)"
       },
-      "price": 689000,
-      "old_price": 799000,
+      "description": {
+        "uz": "Tabiiy qo'zichoq juni 💯 · kashemir",
+        "ru": "Натуральная шерсть ягнёнка 💯 · кашемир"
+      },
+      "price_usd": 69,
+      "old_price": null,
       "sizes": [
-        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Bej",
+              "ru": "Бежевый"
+            },
+            {
+              "uz": "Kulrang",
+              "ru": "Серый"
+            }
+          ]
+        }
+      ],
+      "images": [
+        "/static/img/products/vetrovka-kashemir/1.jpg",
+        "/static/img/products/vetrovka-kashemir/2.jpg",
+        "/static/img/products/vetrovka-kashemir/3.jpg",
+        "/static/img/products/vetrovka-kashemir/4.jpg",
+        "/static/img/products/vetrovka-kashemir/5.jpg"
+      ],
+      "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/85"
+    },
+    {
+      "id": "kardigan-tik-yoqa",
+      "category": "knit",
+      "title": {
+        "uz": "Kardigan, tik yoqali",
+        "ru": "Кардиган с воротником-стойкой"
+      },
+      "description": {
+        "uz": "Tik yoqa · mayin mato 🧶",
+        "ru": "Воротник-стойка · мягкая ткань 🧶"
+      },
+      "price": 249000,
+      "old_price": null,
+      "sizes": [
         "M",
         "L",
         "XL",
         "2XL",
         "3XL",
-        "4XL",
-        "5XL",
-        "6XL"
+        "4XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Kulrang",
+              "ru": "Серый"
+            },
+            {
+              "uz": "Oq",
+              "ru": "Белый"
+            },
+            {
+              "uz": "Qora",
+              "ru": "Чёрный"
+            },
+            {
+              "uz": "Bejeviy",
+              "ru": "Бежевый"
+            }
+          ]
+        }
       ],
       "images": [
-        "/static/img/p4.svg"
+        "/static/img/products/kardigan-tik-yoqa/1.jpg",
+        "/static/img/products/kardigan-tik-yoqa/2.jpg",
+        "/static/img/products/kardigan-tik-yoqa/3.jpg",
+        "/static/img/products/kardigan-tik-yoqa/4.jpg",
+        "/static/img/products/kardigan-tik-yoqa/5.jpg",
+        "/static/img/products/kardigan-tik-yoqa/6.jpg",
+        "/static/img/products/kardigan-tik-yoqa/7.jpg"
       ],
       "in_stock": true,
-      "description": {
-        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
-        "ru": "Оригинальное качество. Размеры — от S до 6XL."
-      }
+      "post": "https://t.me/siluetstoreuz/47"
     },
     {
-      "id": "p5",
-      "category": "sets",
+      "id": "kardigan-old-money",
+      "category": "knit",
       "title": {
-        "uz": "Sport to'plam",
-        "ru": "Спортивный костюм"
+        "uz": "Kardigan Old money",
+        "ru": "Кардиган Old money"
       },
-      "price": 549000,
+      "description": {
+        "uz": "Tabiiy yun 🐏 · old money uslubi",
+        "ru": "Натуральная шерсть 🐏 · стиль old money"
+      },
+      "price": 289000,
+      "old_price": null,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Bejeviy",
+              "ru": "Бежевый"
+            },
+            {
+              "uz": "Kulrang",
+              "ru": "Серый"
+            },
+            {
+              "uz": "Kofe rang",
+              "ru": "Кофейный"
+            }
+          ]
+        }
+      ],
+      "images": [
+        "/static/img/products/kardigan-old-money/1.jpg",
+        "/static/img/products/kardigan-old-money/2.jpg",
+        "/static/img/products/kardigan-old-money/3.jpg",
+        "/static/img/products/kardigan-old-money/4.jpg",
+        "/static/img/products/kardigan-old-money/5.jpg",
+        "/static/img/products/kardigan-old-money/6.jpg"
+      ],
+      "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/57"
+    },
+    {
+      "id": "kardigan-paxta",
+      "category": "knit",
+      "title": {
+        "uz": "Kardigan",
+        "ru": "Кардиган"
+      },
+      "description": {
+        "uz": "Paxta / akril 70/30%",
+        "ru": "Хлопок / акрил 70/30%"
+      },
+      "price": 280000,
+      "old_price": null,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Kulrang",
+              "ru": "Серый"
+            },
+            {
+              "uz": "Qora",
+              "ru": "Чёрный"
+            },
+            {
+              "uz": "To'q ko'k",
+              "ru": "Тёмно-синий"
+            },
+            {
+              "uz": "Jigarrang",
+              "ru": "Коричневый"
+            }
+          ]
+        }
+      ],
+      "images": [
+        "/static/img/products/kardigan-paxta/1.jpg",
+        "/static/img/products/kardigan-paxta/2.jpg",
+        "/static/img/products/kardigan-paxta/3.jpg",
+        "/static/img/products/kardigan-paxta/4.jpg",
+        "/static/img/products/kardigan-paxta/5.jpg",
+        "/static/img/products/kardigan-paxta/6.jpg",
+        "/static/img/products/kardigan-paxta/7.jpg",
+        "/static/img/products/kardigan-paxta/8.jpg"
+      ],
+      "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/114"
+    },
+    {
+      "id": "kardigan-paxta-old-money",
+      "category": "knit",
+      "title": {
+        "uz": "Kardigan, paxta",
+        "ru": "Хлопковый кардиган"
+      },
+      "description": {
+        "uz": "Paxta · old money uslubi",
+        "ru": "Хлопок · стиль old money"
+      },
+      "price": 300000,
       "old_price": null,
       "sizes": [
         "S",
         "M",
         "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL",
-        "5XL",
-        "6XL"
+        "XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Kulrang",
+              "ru": "Серый"
+            }
+          ]
+        }
       ],
       "images": [
-        "/static/img/p5.svg"
+        "/static/img/products/kardigan-paxta-old-money/1.jpg",
+        "/static/img/products/kardigan-paxta-old-money/2.jpg",
+        "/static/img/products/kardigan-paxta-old-money/3.jpg",
+        "/static/img/products/kardigan-paxta-old-money/4.jpg",
+        "/static/img/products/kardigan-paxta-old-money/5.jpg"
       ],
       "in_stock": true,
-      "description": {
-        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
-        "ru": "Оригинальное качество. Размеры — от S до 6XL."
-      }
+      "post": "https://t.me/siluetstoreuz/118"
     },
     {
-      "id": "p6",
-      "category": "outer",
+      "id": "jiletka",
+      "category": "knit",
       "title": {
-        "uz": "Jinsi kurtka",
-        "ru": "Джинсовая куртка"
+        "uz": "Jiletka",
+        "ru": "Жилет"
       },
-      "price": 459000,
+      "description": {
+        "uz": "Akril 50% / qo'y juni 50% · barcha fasllar uchun. Old money uslubida kiyinadiganlar uchun zo'r variant.",
+        "ru": "Акрил 50% / овечья шерсть 50% · на все сезоны. Отличный вариант для стиля old money."
+      },
+      "price": 220000,
       "old_price": null,
       "sizes": [
-        "S",
         "M",
         "L",
         "XL",
         "2XL",
-        "3XL",
-        "4XL",
-        "5XL",
-        "6XL"
+        "3XL"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Bej",
+              "ru": "Бежевый"
+            },
+            {
+              "uz": "Kulrang",
+              "ru": "Серый"
+            },
+            {
+              "uz": "Qora",
+              "ru": "Чёрный"
+            },
+            {
+              "uz": "Jigarrang",
+              "ru": "Коричневый"
+            }
+          ]
+        }
       ],
       "images": [
-        "/static/img/p6.svg"
+        "/static/img/products/jiletka/1.jpg",
+        "/static/img/products/jiletka/2.jpg",
+        "/static/img/products/jiletka/3.jpg",
+        "/static/img/products/jiletka/4.jpg"
       ],
       "in_stock": true,
-      "description": {
-        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
-        "ru": "Оригинальное качество. Размеры — от S до 6XL."
-      }
+      "post": "https://t.me/siluetstoreuz/80"
     },
     {
-      "id": "p7",
+      "id": "jogger",
       "category": "pants",
       "title": {
-        "uz": "Klassik shim",
-        "ru": "Классические брюки"
+        "uz": "Jogger",
+        "ru": "Джоггеры"
       },
-      "price": 359000,
+      "description": {
+        "uz": "Suv o'tkazmaydigan mato",
+        "ru": "Водоотталкивающая ткань"
+      },
+      "price": 200000,
       "old_price": null,
       "sizes": [
         "S",
@@ -226,43 +530,312 @@
         "5XL",
         "6XL"
       ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Qora",
+              "ru": "Чёрный"
+            },
+            {
+              "uz": "To'q yashil",
+              "ru": "Тёмно-зелёный"
+            },
+            {
+              "uz": "Kulrang",
+              "ru": "Серый"
+            },
+            {
+              "uz": "Xaki",
+              "ru": "Хаки"
+            }
+          ]
+        },
+        {
+          "key": "style",
+          "name": {
+            "uz": "Fason",
+            "ru": "Фасон"
+          },
+          "values": [
+            {
+              "uz": "Nachosli",
+              "ru": "С манжетами"
+            },
+            {
+              "uz": "Nachosiz",
+              "ru": "Без манжет"
+            }
+          ]
+        }
+      ],
       "images": [
-        "/static/img/p7.svg"
+        "/static/img/products/jogger/1.jpg",
+        "/static/img/products/jogger/2.jpg",
+        "/static/img/products/jogger/3.jpg",
+        "/static/img/products/jogger/4.jpg",
+        "/static/img/products/jogger/5.jpg"
       ],
       "in_stock": true,
-      "description": {
-        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
-        "ru": "Оригинальное качество. Размеры — от S до 6XL."
-      }
+      "post": "https://t.me/siluetstoreuz/128"
     },
     {
-      "id": "p8",
-      "category": "tops",
+      "id": "birkenstock",
+      "category": "shoes",
       "title": {
-        "uz": "Trikotaj sviter",
-        "ru": "Трикотажный свитер"
+        "uz": "Birkenstock",
+        "ru": "Birkenstock"
       },
-      "price": 379000,
-      "old_price": 429000,
+      "description": {
+        "uz": "Top quality · anatomik taglik · quti va hujjatlari bilan keladi",
+        "ru": "Top quality · анатомическая подошва · в коробке с документами"
+      },
+      "price_usd": 22,
+      "old_price": null,
       "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL",
-        "5XL",
-        "6XL"
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Jigarrang",
+              "ru": "Коричневый"
+            },
+            {
+              "uz": "Bej",
+              "ru": "Бежевый"
+            },
+            {
+              "uz": "Kulrang",
+              "ru": "Серый"
+            }
+          ]
+        }
       ],
       "images": [
-        "/static/img/p8.svg"
+        "/static/img/products/birkenstock/1.jpg",
+        "/static/img/products/birkenstock/2.jpg",
+        "/static/img/products/birkenstock/3.jpg",
+        "/static/img/products/birkenstock/4.jpg",
+        "/static/img/products/birkenstock/5.jpg",
+        "/static/img/products/birkenstock/6.jpg"
       ],
       "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/68"
+    },
+    {
+      "id": "li-ning-qishki-botinka",
+      "category": "shoes",
+      "title": {
+        "uz": "Li-Ning qishki botinka",
+        "ru": "Зимние ботинки Li-Ning"
+      },
       "description": {
-        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
-        "ru": "Оригинальное качество. Размеры — от S до 6XL."
-      }
+        "uz": "Qishki, mexsiz · yumshoq EVA taglik. O'lchamlar soni cheklangan.",
+        "ru": "Зимние, без меха · мягкая подошва EVA. Размеров осталось мало."
+      },
+      "price_usd": 35,
+      "old_price": null,
+      "sizes": [
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Qora",
+              "ru": "Чёрный"
+            },
+            {
+              "uz": "Bej-qora",
+              "ru": "Бежево-чёрный"
+            }
+          ]
+        }
+      ],
+      "images": [
+        "/static/img/products/li-ning-qishki-botinka/1.jpg",
+        "/static/img/products/li-ning-qishki-botinka/2.jpg",
+        "/static/img/products/li-ning-qishki-botinka/3.jpg",
+        "/static/img/products/li-ning-qishki-botinka/4.jpg"
+      ],
+      "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/72"
+    },
+    {
+      "id": "li-ning-mexli",
+      "category": "shoes",
+      "title": {
+        "uz": "Li-Ning qishki krossovka (mexli)",
+        "ru": "Зимние кроссовки Li-Ning (с мехом)"
+      },
+      "description": {
+        "uz": "Ultralight taglik · −5°C sovuqqa chidamli",
+        "ru": "Ультралёгкая подошва · держат до −5°C"
+      },
+      "price_usd": 35,
+      "old_price": null,
+      "sizes": [
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45"
+      ],
+      "options": [],
+      "images": [
+        "/static/img/products/li-ning-mexli/1.jpg",
+        "/static/img/products/li-ning-mexli/2.jpg",
+        "/static/img/products/li-ning-mexli/3.jpg",
+        "/static/img/products/li-ning-mexli/4.jpg",
+        "/static/img/products/li-ning-mexli/5.jpg",
+        "/static/img/products/li-ning-mexli/6.jpg",
+        "/static/img/products/li-ning-mexli/7.jpg"
+      ],
+      "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/103"
+    },
+    {
+      "id": "li-ning-cloud-lite",
+      "category": "shoes",
+      "title": {
+        "uz": "Li-Ning Cloud Lite",
+        "ru": "Li-Ning Cloud Lite"
+      },
+      "description": {
+        "uz": "Ortopedik taglik · juda yengil ☁️",
+        "ru": "Ортопедическая подошва · очень лёгкие ☁️"
+      },
+      "price_usd": 28,
+      "old_price": null,
+      "sizes": [
+        "37",
+        "39.5",
+        "40",
+        "44"
+      ],
+      "options": [],
+      "images": [
+        "/static/img/products/li-ning-cloud-lite/1.jpg",
+        "/static/img/products/li-ning-cloud-lite/2.jpg",
+        "/static/img/products/li-ning-cloud-lite/3.jpg",
+        "/static/img/products/li-ning-cloud-lite/4.jpg",
+        "/static/img/products/li-ning-cloud-lite/5.jpg",
+        "/static/img/products/li-ning-cloud-lite/6.jpg"
+      ],
+      "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/98"
+    },
+    {
+      "id": "li-ning-comfoam",
+      "category": "shoes",
+      "title": {
+        "uz": "Li-Ning krossovka",
+        "ru": "Кроссовки Li-Ning"
+      },
+      "description": {
+        "uz": "Comfoam taglik",
+        "ru": "Подошва Comfoam"
+      },
+      "price_usd": 28,
+      "old_price": null,
+      "sizes": [
+        "39.5",
+        "40",
+        "40.5",
+        "41",
+        "42",
+        "42.5",
+        "43",
+        "44",
+        "44.5",
+        "45"
+      ],
+      "options": [],
+      "images": [
+        "/static/img/products/li-ning-comfoam/1.jpg",
+        "/static/img/products/li-ning-comfoam/2.jpg",
+        "/static/img/products/li-ning-comfoam/3.jpg",
+        "/static/img/products/li-ning-comfoam/4.jpg",
+        "/static/img/products/li-ning-comfoam/5.jpg"
+      ],
+      "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/124"
+    },
+    {
+      "id": "li-ning-kepka",
+      "category": "acc",
+      "title": {
+        "uz": "Li-Ning kepka",
+        "ru": "Кепка Li-Ning"
+      },
+      "description": {
+        "uz": "Original · o'lchami orqasidan sozlanadi",
+        "ru": "Оригинал · регулируется сзади"
+      },
+      "price": 150000,
+      "old_price": null,
+      "sizes": [
+        "One size"
+      ],
+      "options": [
+        {
+          "key": "color",
+          "name": {
+            "uz": "Rang",
+            "ru": "Цвет"
+          },
+          "values": [
+            {
+              "uz": "Jigarrang",
+              "ru": "Коричневый"
+            }
+          ]
+        }
+      ],
+      "images": [
+        "/static/img/products/li-ning-kepka/1.jpg",
+        "/static/img/products/li-ning-kepka/2.jpg",
+        "/static/img/products/li-ning-kepka/3.jpg",
+        "/static/img/products/li-ning-kepka/4.jpg"
+      ],
+      "in_stock": true,
+      "post": "https://t.me/siluetstoreuz/73"
     }
   ]
 }

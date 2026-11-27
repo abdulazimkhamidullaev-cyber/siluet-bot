@@ -64,7 +64,18 @@ def db():
 
 
 def load_catalog() -> dict:
-    return json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
+    cat = json.loads(CATALOG_FILE.read_text(encoding="utf-8"))
+    rate = cat["settings"].get("usd_rate", 0)
+    for p in cat["products"]:
+        # Dollar-priced items are converted to so'm and rounded to 1 000.
+        if p.get("price_usd") is not None:
+            p["price"] = int(round(p["price_usd"] * rate / 1000) * 1000)
+        p.setdefault("options", [])
+    return cat
+
+
+def option_text(p: dict, chosen: dict) -> str:
+    return ", ".join(chosen[o["key"]] for o in p["options"] if o["key"] in chosen)
 
 
 def fmt(n: int) -> str:
@@ -126,13 +137,16 @@ async def notify_order(order_id: int, user: dict, o: "OrderIn", lines: list, tot
     e = html.escape
     who = e(user.get("first_name", "")) + (f" (@{e(user['username'])})" if user.get("username") else "")
     items = "\n".join(
-        f"• {e(l['title'])} — <b>{e(l['size'])}</b> × {l['qty']} = {fmt(l['sum'])} so'm" for l in lines
+        f"• {e(l['title'])} — <b>{e(l['size'])}</b>"
+        + (f", {e(l['options'])}" if l["options"] else "")
+        + f" × {l['qty']} = {fmt(l['sum'])} so'm" for l in lines
     )
     text = (
         f"🛒 <b>Yangi buyurtma #{order_id}</b>\n\n"
         f"{items}\n\n"
         f"💰 Jami: <b>{fmt(total)} so'm</b>\n"
-        f"💳 Oldindan to'lov (50%): <b>{fmt(prepay)} so'm</b>\n\n"
+        f"💳 Oldindan to'lov (50%): <b>{fmt(prepay)} so'm</b>\n"
+        f"📦 + kargo (14 000 so'm / 100 g) alohida\n\n"
         f"👤 {e(o.name)}\n📞 {e(o.phone)}\n📍 {e(o.region)}, {e(o.address)}\n"
         + (f"💬 {e(o.comment)}\n" if o.comment else "")
         + f"\nTelegram: {who}"
@@ -165,6 +179,7 @@ class CartItem(BaseModel):
     id: str
     size: str
     qty: int = Field(ge=1, le=50)
+    opt: dict[str, str] = {}
 
 
 class OrderIn(BaseModel):
@@ -211,10 +226,13 @@ async def create_order(o: OrderIn):
         p = products.get(it.id)
         if not p or it.size not in p["sizes"] or not p.get("in_stock", True):
             raise HTTPException(400, f"Mahsulot mavjud emas: {it.id} {it.size}")
+        for grp in p["options"]:
+            if it.opt.get(grp["key"]) not in [v["uz"] for v in grp["values"]]:
+                raise HTTPException(400, f"{p['title']['uz']}: {grp['name']['uz'].lower()} tanlanmagan")
         s = p["price"] * it.qty
         total += s
         lines.append({"id": p["id"], "title": p["title"]["uz"], "size": it.size,
-                      "qty": it.qty, "price": p["price"], "sum": s})
+                      "options": option_text(p, it.opt), "qty": it.qty, "price": p["price"], "sum": s})
     prepay = round(total * cat["settings"]["prepay_percent"] / 100)
 
     with db() as con:

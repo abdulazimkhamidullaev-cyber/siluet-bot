@@ -63,7 +63,7 @@ h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 700; le
 /* grid */
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 0 16px; }
 .card { background: var(--card); border-radius: 16px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; text-align: left; padding: 0; }
-.card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: var(--line); }
+.card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; background: var(--line); }
 .card .info { padding: 10px 12px 12px; }
 .card .t { font-weight: 500; font-size: 14px; margin: 0 0 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .card .pr { font-weight: 700; white-space: nowrap; }
@@ -74,7 +74,17 @@ h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 700; le
 .old { color: var(--muted); font-size: 12px; }
 
 /* product */
-.p-img img { width: 100%; aspect-ratio: 4/5; max-height: 60vh; object-fit: cover; display: block; }
+.gallery { position: relative; background: var(--card); }
+.gal-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.gal-track::-webkit-scrollbar { display: none; }
+.gal-track img { flex: 0 0 100%; width: 100%; aspect-ratio: 1/1; max-height: 70vh; object-fit: cover; scroll-snap-align: center; display: block; }
+.dots { position: absolute; bottom: 10px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+.dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.6); box-shadow: 0 0 2px rgba(0,0,0,.4); transition: width .2s; }
+.dots i.on { width: 18px; background: #fff; }
+.cargo { font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+.opt-btn { padding: 9px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); font-weight: 500; }
+.opt-btn.on { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.pcount { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,.45); color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 999px; }
 .p-body { padding: 4px 16px 16px; }
 .p-body h2 { font-size: 28px; margin: 12px 0 4px; }
 .p-body h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin: 20px 0 10px; font-weight: 600; }
@@ -94,7 +104,7 @@ h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 700; le
 /* cart */
 .v-title { font-size: 28px; margin: 18px 16px 8px; }
 .line { display: grid; grid-template-columns: 72px 1fr auto; gap: 12px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line); }
-.line img { width: 72px; height: 90px; object-fit: cover; border-radius: 10px; }
+.line img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; }
 .line .t { font-weight: 500; margin: 0; }
 .line .s { font-size: 13px; color: var(--muted); margin: 2px 0 8px; }
 .line .r { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }

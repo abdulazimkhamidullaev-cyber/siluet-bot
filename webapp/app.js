@@ -12,7 +12,7 @@
       cart: "Savat", empty: "Savatingiz bo'sh", toCatalog: "Katalogga qaytish",
       checkout: "Rasmiylashtirish", fName: "Ism va familiya", fPhone: "Telefon raqam",
       fRegion: "Viloyat", fAddress: "Manzil (shahar/tuman, ko'cha, uy)", fComment: "Izoh (ixtiyoriy)",
-      size: "O'lcham", remove: "O'chirish", items: "Mahsulotlar", total: "Jami",
+      size: "O'lcham", pick: (n) => `${n}ni tanlang`, remove: "O'chirish", items: "Mahsulotlar", total: "Jami",
       prepay: "Oldindan to'lov (50%)", rest: "Qabul qilishda",
       note: "Yetkazish muddati 7–14 kun. Menejer to'lov bo'yicha siz bilan bog'lanadi.",
       add: "Savatga qo'shish", added: "Savatga qo'shildi ✓", pickSize: "Avval o'lchamni tanlang",
@@ -27,7 +27,7 @@
       cart: "Корзина", empty: "Ваша корзина пуста", toCatalog: "Вернуться в каталог",
       checkout: "Оформление", fName: "Имя и фамилия", fPhone: "Телефон",
       fRegion: "Регион", fAddress: "Адрес (город/район, улица, дом)", fComment: "Комментарий (необязательно)",
-      size: "Размер", remove: "Удалить", items: "Товары", total: "Итого",
+      size: "Размер", pick: (n) => `Выберите: ${n.toLowerCase()}`, remove: "Удалить", items: "Товары", total: "Итого",
       prepay: "Предоплата (50%)", rest: "При получении",
       note: "Срок доставки 7–14 дней. Менеджер свяжется с вами по оплате.",
       add: "В корзину", added: "Добавлено в корзину ✓", pickSize: "Сначала выберите размер",
@@ -51,7 +51,7 @@
     lang: store.get("lang", tgLang === "ru" ? "ru" : "uz"),
     data: null, cat: "all", view: "catalog",
     cart: store.get("cart", []),        // [{id, size, qty}]
-    product: null, size: null, qty: 1,
+    product: null, size: null, qty: 1, opt: {},
   };
   const t = (k) => T[S.lang][k];
   const money = (n) => n.toLocaleString("ru-RU").replace(/,/g, " ") + " " + S.data.settings.currency[S.lang];
@@ -99,9 +99,10 @@
     const n = cartCount(), b = $("#cartCount");
     b.hidden = !n; b.textContent = n;
   }
-  function addToCart(id, size, qty) {
-    const ex = S.cart.find((i) => i.id === id && i.size === size);
-    if (ex) ex.qty = Math.min(50, ex.qty + qty); else S.cart.push({ id, size, qty });
+  function addToCart(id, size, qty, opt) {
+    const key = JSON.stringify(opt || {});
+    const ex = S.cart.find((i) => i.id === id && i.size === size && JSON.stringify(i.opt || {}) === key);
+    if (ex) ex.qty = Math.min(50, ex.qty + qty); else S.cart.push({ id, size, qty, opt: { ...opt } });
     saveCart();
   }
 
@@ -133,6 +134,7 @@
       <button class="card" data-id="${p.id}">
         <div class="card-wrap">
           <img src="${p.images[0]}" alt="${esc(p.title[S.lang])}" loading="lazy">
+          ${p.images.length > 1 ? `<span class="pcount">1/${p.images.length}</span>` : ""}
           ${p.old_price ? `<span class="sale">−${Math.round(100 - (p.price / p.old_price) * 100)}%</span>` : ""}
         </div>
         <div class="info"><p class="t">${esc(p.title[S.lang])}</p>
@@ -142,10 +144,29 @@
     setAction(n ? `${t("goCart")} (${n}) · ${money(cartTotal())}` : null, () => go("cart"));
   }
 
-  function openProduct(id) { S.product = prod(id); S.size = null; S.qty = 1; go("product"); }
+  function openProduct(id) {
+    S.product = prod(id); S.qty = 1; S.opt = {};
+    S.size = S.product.sizes.length === 1 ? S.product.sizes[0] : null;
+    S.product.options.forEach((o) => { if (o.values.length === 1) S.opt[o.key] = o.values[0].uz; });
+    S.galFor = null; go("product");
+  }
+  function optLabel(p, key, uzVal) {
+    const o = p.options.find((x) => x.key === key), v = o && o.values.find((x) => x.uz === uzVal);
+    return v ? v[S.lang] : uzVal;
+  }
   function renderProduct() {
     const p = S.product;
-    $("#pImg").src = p.images[0]; $("#pImg").alt = p.title[S.lang];
+    if (S.galFor !== p.id) {           // build gallery once per product so swipe position is kept
+      S.galFor = p.id;
+      $("#gal").innerHTML = p.images.map((src, i) => `<img src="${src}" alt="${esc(p.title[S.lang])}" ${i ? 'loading="lazy"' : ""}>`).join("");
+      $("#galDots").innerHTML = p.images.length > 1 ? p.images.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("") : "";
+      $("#gal").scrollLeft = 0;
+    }
+    $("#pCargo").textContent = S.data.settings.cargo[S.lang];
+    $("#opts").innerHTML = p.options.map((o) => `
+      <h3>${esc(o.name[S.lang])}${S.opt[o.key] ? `: <span style="text-transform:none">${esc(optLabel(p, o.key, S.opt[o.key]))}</span>` : ""}</h3>
+      <div class="sizes" data-optgroup="${o.key}">${o.values.map((v) =>
+        `<button class="opt-btn ${S.opt[o.key] === v.uz ? "on" : ""}" data-okey="${o.key}" data-oval="${esc(v.uz)}">${esc(v[S.lang])}</button>`).join("")}</div>`).join("");
     $("#pTitle").textContent = p.title[S.lang];
     $("#pPrice").textContent = money(p.price);
     $("#pOld").textContent = p.old_price ? money(p.old_price) : "";
@@ -153,12 +174,16 @@
     $("#sizes").innerHTML = p.sizes.map((s) => `<button class="size ${S.size === s ? "on" : ""}" data-size="${s}">${s}</button>`).join("");
     $("#qVal").textContent = S.qty;
     setAction(`${t("add")} · ${money(p.price * S.qty)}`, () => {
-      if (!S.size) {
-        const el = $("#sizes"); el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake");
+      const shake = (el, msg) => {
+        el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake");
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
         try { tg.HapticFeedback.notificationOccurred("error"); } catch {}
-        return toast(t("pickSize"));
-      }
-      addToCart(p.id, S.size, S.qty); haptic("medium"); toast(t("added")); go("catalog");
+        toast(msg);
+      };
+      const missing = p.options.find((o) => !S.opt[o.key]);
+      if (missing) return shake(document.querySelector(`[data-optgroup="${missing.key}"]`), t("pick")(missing.name[S.lang]));
+      if (!S.size) return shake($("#sizes"), t("pickSize"));
+      addToCart(p.id, S.size, S.qty, S.opt); haptic("medium"); toast(t("added")); go("catalog");
     });
   }
 
@@ -168,7 +193,7 @@
       <div class="row"><span>${t("prepay")}</span><span>${money(pre)}</span></div>
       <div class="row"><span>${t("rest")}</span><span>${money(total - pre)}</span></div>
       <div class="row total"><span>${t("total")}</span><span>${money(total)}</span></div>
-      <p class="note">${t("note")}</p>`;
+      <p class="note">${esc(S.data.settings.cargo[S.lang])}<br>${t("note")}</p>`;
   }
 
   function renderCart() {
@@ -179,7 +204,7 @@
       const p = prod(i.id);
       return `<div class="line">
         <img src="${p.images[0]}" alt="">
-        <div><p class="t">${esc(p.title[S.lang])}</p><p class="s">${t("size")}: <b>${i.size}</b> · ${money(p.price)}</p>
+        <div><p class="t">${esc(p.title[S.lang])}</p><p class="s">${t("size")}: <b>${i.size}</b>${Object.entries(i.opt || {}).map(([k, v]) => ` · ${esc(optLabel(p, k, v))}`).join("")}<br>${money(p.price)}</p>
           <div class="stepper"><button data-dec="${idx}">−</button><span>${i.qty}</span><button data-inc="${idx}">+</button></div></div>
         <div class="r"><b>${money(p.price * i.qty)}</b><button class="del" data-del="${idx}">${t("remove")}</button></div>
       </div>`;
@@ -235,6 +260,7 @@
     if (d.cat) { S.cat = d.cat; haptic(); renderCatalog(); }
     else if (d.id) openProduct(d.id);
     else if (d.size) { S.size = d.size; haptic(); renderProduct(); }
+    else if (d.okey) { S.opt[d.okey] = d.oval; haptic(); renderProduct(); }
     else if (d.inc) { S.cart[+d.inc].qty = Math.min(50, S.cart[+d.inc].qty + 1); haptic(); renderCart(); }
     else if (d.dec) { const i = S.cart[+d.dec]; i.qty -= 1; haptic(); renderCart(); }
     else if (d.del) { S.cart.splice(+d.del, 1); haptic(); renderCart(); }
@@ -242,6 +268,10 @@
   });
   $("#qPlus").onclick = () => { S.qty = Math.min(50, S.qty + 1); haptic(); renderProduct(); };
   $("#qMinus").onclick = () => { S.qty = Math.max(1, S.qty - 1); haptic(); renderProduct(); };
+  $("#gal").addEventListener("scroll", () => {
+    const g = $("#gal"), i = Math.round(g.scrollLeft / g.clientWidth);
+    document.querySelectorAll("#galDots i").forEach((d, k) => d.classList.toggle("on", k === i));
+  }, { passive: true });
   $("#cartBtn").onclick = () => go("cart");
   $("#langBtn").onclick = () => { S.lang = S.lang === "uz" ? "ru" : "uz"; store.set("lang", S.lang); render(); };
 
