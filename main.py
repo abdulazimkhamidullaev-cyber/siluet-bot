@@ -162,7 +162,9 @@ async def notify_order(order_id: int, user: dict, o: "OrderIn", lines: list, tot
         kb = InlineKeyboardMarkup(inline_keyboard=[[
             InlineKeyboardButton(text="✉️ Mijozga yozish", url=f"tg://user?id={user['id']}")
         ]])
-    for admin in ADMIN_CHAT_IDS:
+    # Admins = ADMIN_CHAT_ID (Railway variable) + settings.admin_chat_ids in products.json
+    admins = list(dict.fromkeys(ADMIN_CHAT_IDS + [int(x) for x in load_catalog()["settings"].get("admin_chat_ids", [])]))
+    for admin in admins:
         try:
             await bot.send_message(admin, text, reply_markup=kb)
         except Exception as ex:  # one admin blocked the bot / never pressed Start

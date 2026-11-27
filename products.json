@@ -12,7 +12,10 @@
     "cargo": {
       "uz": "+ kargo xizmati: 14 000 so'm / 100 g (alohida hisoblanadi)",
       "ru": "+ карго: 14 000 сум / 100 г (оплачивается отдельно)"
-    }
+    },
+    "admin_chat_ids": [
+      1368341417
+    ]
   },
   "categories": [
     {
