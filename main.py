@@ -47,7 +47,12 @@ DEV_MODE = os.getenv("DEV_MODE", "0") == "1"                    # allow orders f
 PORT = int(os.getenv("PORT", "8000"))
 
 CATALOG_FILE = BASE / "products.json"
-DB_FILE = BASE / "orders.db"
+# Orders must survive redeploys: on Railway keep the DB on the attached volume
+# (Railway sets RAILWAY_VOLUME_MOUNT_PATH); locally fall back to the project folder.
+DATA_DIR = Path(os.getenv("DATA_DIR") or os.getenv("RAILWAY_VOLUME_MOUNT_PATH") or BASE)
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+DB_FILE = DATA_DIR / "orders.db"
+print(f"orders database: {DB_FILE}", flush=True)
 
 
 # ---------------------------------------------------------------- storage
