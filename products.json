@@ -1,0 +1,268 @@
+{
+  "settings": {
+    "currency": {
+      "uz": "so'm",
+      "ru": "сум"
+    },
+    "prepay_percent": 50,
+    "delivery_days": "7–14",
+    "manager": "@dilmurodov_bexruz",
+    "channel": "https://t.me/siluetstoreuz"
+  },
+  "categories": [
+    {
+      "id": "tops",
+      "uz": "Ustki kiyim",
+      "ru": "Верх"
+    },
+    {
+      "id": "pants",
+      "uz": "Shimlar",
+      "ru": "Брюки"
+    },
+    {
+      "id": "outer",
+      "uz": "Kurtkalar",
+      "ru": "Куртки"
+    },
+    {
+      "id": "sets",
+      "uz": "To'plamlar",
+      "ru": "Комплекты"
+    }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "category": "tops",
+      "title": {
+        "uz": "Klassik polo",
+        "ru": "Классическое поло"
+      },
+      "price": 289000,
+      "old_price": 349000,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "images": [
+        "/static/img/p1.svg"
+      ],
+      "in_stock": true,
+      "description": {
+        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
+        "ru": "Оригинальное качество. Размеры — от S до 6XL."
+      }
+    },
+    {
+      "id": "p2",
+      "category": "tops",
+      "title": {
+        "uz": "Oversize futbolka",
+        "ru": "Оверсайз футболка"
+      },
+      "price": 199000,
+      "old_price": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "images": [
+        "/static/img/p2.svg"
+      ],
+      "in_stock": true,
+      "description": {
+        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
+        "ru": "Оригинальное качество. Размеры — от S до 6XL."
+      }
+    },
+    {
+      "id": "p3",
+      "category": "pants",
+      "title": {
+        "uz": "Chino shim",
+        "ru": "Брюки чинос"
+      },
+      "price": 329000,
+      "old_price": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "images": [
+        "/static/img/p3.svg"
+      ],
+      "in_stock": true,
+      "description": {
+        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
+        "ru": "Оригинальное качество. Размеры — от S до 6XL."
+      }
+    },
+    {
+      "id": "p4",
+      "category": "outer",
+      "title": {
+        "uz": "Kuzgi kurtka",
+        "ru": "Осенняя куртка"
+      },
+      "price": 689000,
+      "old_price": 799000,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "images": [
+        "/static/img/p4.svg"
+      ],
+      "in_stock": true,
+      "description": {
+        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
+        "ru": "Оригинальное качество. Размеры — от S до 6XL."
+      }
+    },
+    {
+      "id": "p5",
+      "category": "sets",
+      "title": {
+        "uz": "Sport to'plam",
+        "ru": "Спортивный костюм"
+      },
+      "price": 549000,
+      "old_price": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "images": [
+        "/static/img/p5.svg"
+      ],
+      "in_stock": true,
+      "description": {
+        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
+        "ru": "Оригинальное качество. Размеры — от S до 6XL."
+      }
+    },
+    {
+      "id": "p6",
+      "category": "outer",
+      "title": {
+        "uz": "Jinsi kurtka",
+        "ru": "Джинсовая куртка"
+      },
+      "price": 459000,
+      "old_price": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "images": [
+        "/static/img/p6.svg"
+      ],
+      "in_stock": true,
+      "description": {
+        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
+        "ru": "Оригинальное качество. Размеры — от S до 6XL."
+      }
+    },
+    {
+      "id": "p7",
+      "category": "pants",
+      "title": {
+        "uz": "Klassik shim",
+        "ru": "Классические брюки"
+      },
+      "price": 359000,
+      "old_price": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "images": [
+        "/static/img/p7.svg"
+      ],
+      "in_stock": true,
+      "description": {
+        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
+        "ru": "Оригинальное качество. Размеры — от S до 6XL."
+      }
+    },
+    {
+      "id": "p8",
+      "category": "tops",
+      "title": {
+        "uz": "Trikotaj sviter",
+        "ru": "Трикотажный свитер"
+      },
+      "price": 379000,
+      "old_price": 429000,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "images": [
+        "/static/img/p8.svg"
+      ],
+      "in_stock": true,
+      "description": {
+        "uz": "Original sifat. O'lcham — S dan 6XL gacha.",
+        "ru": "Оригинальное качество. Размеры — от S до 6XL."
+      }
+    }
+  ]
+}

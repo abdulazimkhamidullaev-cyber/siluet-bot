@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Siluet store</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 4c4 4 4 8 0 12-4-4-4-8 0-12zM20 36c4-4 4-8 0-12-4 4-4 8 0 12zM4 20c4-4 8-4 12 0-4 4-8 4-12 0zM36 20c-4-4-8-4-12 0 4 4 8 4 12 0z"/><circle cx="20" cy="20" r="3"/></g></svg>
+      <span>siluetstore<span class="dot">.uz</span></span>
+    </div>
+    <div class="top-actions">
+      <button id="langBtn" class="chip-btn">RU</button>
+      <button id="cartBtn" class="icon-btn" aria-label="Savat">
+        <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 7h12l-1 13H7L6 7zM9 7a3 3 0 0 1 6 0"/></svg>
+        <span id="cartCount" class="badge" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- CATALOG -->
+  <main id="v-catalog" class="view">
+    <section class="hero">
+      <p class="hero-k" data-i18n="heroK"></p>
+      <h1 data-i18n="heroT"></h1>
+      <ul class="perks">
+        <li data-i18n="perk1"></li><li data-i18n="perk2"></li><li data-i18n="perk3"></li>
+      </ul>
+    </section>
+    <nav id="cats" class="cats"></nav>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <!-- PRODUCT -->
+  <main id="v-product" class="view" hidden>
+    <div class="p-img"><img id="pImg" alt=""></div>
+    <div class="p-body">
+      <h2 id="pTitle"></h2>
+      <div class="price-row"><span id="pPrice" class="price"></span><s id="pOld" class="old"></s></div>
+      <p id="pDesc" class="muted"></p>
+      <h3 data-i18n="chooseSize"></h3>
+      <div id="sizes" class="sizes"></div>
+      <h3 data-i18n="qty"></h3>
+      <div class="stepper big">
+        <button id="qMinus">−</button><span id="qVal">1</span><button id="qPlus">+</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- CART -->
+  <main id="v-cart" class="view" hidden>
+    <h2 class="v-title" data-i18n="cart"></h2>
+    <div id="cartList"></div>
+    <div id="cartEmpty" class="empty" hidden>
+      <p data-i18n="empty"></p>
+      <button class="link" data-go="catalog" data-i18n="toCatalog"></button>
+    </div>
+    <div id="cartSum" class="summary"></div>
+  </main>
+
+  <!-- CHECKOUT -->
+  <main id="v-checkout" class="view" hidden>
+    <h2 class="v-title" data-i18n="checkout"></h2>
+    <form id="form" class="form" novalidate>
+      <label><span data-i18n="fName"></span><input name="name" required minlength="2" autocomplete="name"></label>
+      <label><span data-i18n="fPhone"></span><input name="phone" type="tel" required value="+998 " autocomplete="tel"></label>
+      <label><span data-i18n="fRegion"></span><select name="region" id="region" required></select></label>
+      <label><span data-i18n="fAddress"></span><textarea name="address" rows="2" required></textarea></label>
+      <label><span data-i18n="fComment"></span><textarea name="comment" rows="2"></textarea></label>
+    </form>
+    <div id="checkoutSum" class="summary"></div>
+    <p id="formErr" class="err" hidden></p>
+  </main>
+
+  <!-- SUCCESS -->
+  <main id="v-success" class="view center" hidden>
+    <div class="ok-mark">✓</div>
+    <h2 data-i18n="okT"></h2>
+    <p id="okText" class="muted"></p>
+    <button class="link" data-go="catalog" data-i18n="toCatalog"></button>
+  </main>
+
+  <!-- shown only outside Telegram, where there is no MainButton -->
+  <button id="fallbackBtn" class="main-btn" hidden></button>
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
